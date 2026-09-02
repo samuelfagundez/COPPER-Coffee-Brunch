@@ -60,13 +60,11 @@ export const content = {
   // la geolocaliza al vuelo), así que no hace falta lat/lng aquí.
   geo: null as { latitude: number; longitude: number } | null,
 
-  // Pendiente: el negocio no facilitó un teléfono de contacto — el canal de
-  // contacto principal del sitio es Instagram (ver social.instagram).
+  // Pendiente: el negocio no facilitó teléfono ni WhatsApp — el canal de
+  // contacto principal del sitio es Instagram en todo el sitio (ver
+  // social.instagram y contactHref/reservationHref).
   phone: "",
   phoneDisplay: "",
-  // Pendiente: el negocio no dispone de WhatsApp — el contacto se resuelve
-  // por Instagram en todo el sitio (ver contactHref/reservationHref).
-  whatsappNumber: "",
   email: "",
 
   // URL final del sitio (se ajusta al conectar dominio propio)
