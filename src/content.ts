@@ -14,109 +14,107 @@ export interface Photo {
 }
 
 export const content = {
-  name: "La Finestra",
-  shortName: "La Finestra",
-  tagline: "Pizzería económica con buen ambiente en Valencia, España",
+  name: "COPPER Specialty Coffee & Brunch",
+  shortName: "COPPER",
+  tagline: "Cafetería de especialidad y brunch en el Eixample de Valencia",
   description:
-    "La Finestra es una pizzería económica en el Eixample de Valencia, España, perfecta para el tapeo entre amigos: pizzas variadas para compartir, cerveza y vino en un local con mucho buen ambiente nocturno. Suele llenarse, así que es habitual compartir mesa con otros comensales — ven con ganas de socializar y acompaña las porciones con una jarra de tinto de verano bien fría.",
+    "COPPER Specialty Coffee & Brunch es una cafetería de especialidad en el Eixample de Valencia, con un 4,6 de valoración y más de 600 reseñas. La carta gira en torno al café de calidad y al brunch: huevos benedictinos, tostadas de aguacate y salmón, y opciones saludables, vegetarianas y veganas, junto a una buena selección de tés y postres de elaboración propia. Un local acogedor, informal y de ambiente animado, ideal para desayunar o comer sin prisa.",
   metaDescription:
-    "La Finestra: pizzería económica en Valencia, España, ideal para el tapeo con buen ambiente nocturno. Gran variedad de pizzas para compartir, cerveza y vino. Reserva tu mesa.",
+    "COPPER Specialty Coffee & Brunch: cafetería de especialidad en el Eixample de Valencia. Brunch, huevos benedictinos, café de calidad y opciones veganas. Carrer de Borriana, 12.",
   keywords: [
-    "La Finestra",
+    "COPPER Specialty Coffee & Brunch",
     "Valencia",
     "España",
-    "tapeo",
-    "buen ambiente",
-    "pizzería",
-    "pizzería económica",
-    "pizzería con ambiente nocturno",
+    "brunch",
+    "cafetería de especialidad",
+    "café de especialidad",
+    "huevos benedictinos",
+    "brunch cerca de mí",
   ],
-  priceRange: "1 € - 10 €",
-  priceRangeDisplay: "1 € – 10 € por persona aprox.",
-  cuisine: "Pizzería",
+  priceRange: "10 € - 20 €",
+  priceRangeDisplay: "10 € – 20 € por persona aprox.",
+  cuisine: "Brunch",
 
   rating: {
     value: 4.6,
-    count: 4699,
-    countDisplay: "4.699",
+    count: 616,
+    countDisplay: "616",
   },
 
   highlights: [
-    "Acompaña las porciones con una jarra de tinto de verano bien fría.",
-    "Ambiente animado — es posible que tengas que compartir mesa con otros comensales.",
-    "Local accesible en silla de ruedas.",
+    "Carta con opciones saludables, vegetarianas y veganas, además de vino y cerveza.",
+    "No se aceptan reservas: se atiende por orden de llegada.",
+    "Terraza disponible y se admiten perros, dentro y fuera del local.",
   ],
 
   address: {
-    streetAddress: "Carrer dels Vivons, 16",
+    streetAddress: "Carrer de Borriana, 12",
     addressLocality: "València",
     addressRegion: "Comunitat Valenciana",
-    postalCode: "46006",
+    postalCode: "46005",
     addressCountry: "ES",
-    full: "Carrer dels Vivons, 16, L'Eixample, 46006 València",
+    full: "Carrer de Borriana, 12, L'Eixample, 46005 València",
   },
 
   // Sin coordenadas verificadas: el mapa usa la dirección en texto (Google
   // la geolocaliza al vuelo), así que no hace falta lat/lng aquí.
   geo: null as { latitude: number; longitude: number } | null,
 
-  phone: "+56 9 4259 9048",
-  phoneDisplay: "+56 9 4259 9048",
-  // Solo dígitos, con código de país, sin "+" — formato que exige wa.me.
-  whatsappNumber: "56942599048",
-  // Correo de contacto público mostrado en el sitio (temporal).
-  email: "samuelfagundez97@gmail.com",
+  // Pendiente: el negocio no facilitó un teléfono de contacto — el canal de
+  // contacto principal del sitio es Instagram (ver social.instagram).
+  phone: "",
+  phoneDisplay: "",
+  // Pendiente: el negocio no dispone de WhatsApp — el contacto se resuelve
+  // por Instagram en todo el sitio (ver contactHref/reservationHref).
+  whatsappNumber: "",
+  email: "",
 
   // URL final del sitio (se ajusta al conectar dominio propio)
-  siteUrl: "https://samuelfagundez.github.io/la-finestra/",
+  siteUrl: "https://samuelfagundez.github.io/COPPER-Coffee-Brunch/",
 
   social: {
-    instagram: "https://www.instagram.com/la_finestra_ristorante",
-    // Pendiente: el listado de Google Maps solo mostraba "facebook.com"
-    // (URL truncada) — agregar el enlace exacto de la página de Facebook.
+    instagram: "https://www.instagram.com/coppercoffeevlc/",
     facebook: "",
     tiktok: "",
-    whatsapp:
-      "https://wa.me/56942599048?text=" +
-      encodeURIComponent("¡Hola! Vengo de la página web de La Finestra."),
   },
 
   hours: [
-    { day: "Lunes", hours: "5:00 pm – 11:30 pm" },
-    { day: "Martes", hours: "5:00 pm – 11:30 pm" },
-    { day: "Miércoles", hours: "5:00 pm – 11:30 pm" },
-    { day: "Jueves", hours: "11:30 am – 11:30 pm" },
-    { day: "Viernes", hours: "11:30 am – 11:30 pm" },
-    { day: "Sábado", hours: "11:30 am – 11:30 pm" },
-    { day: "Domingo", hours: "11:30 am – 11:30 pm" },
+    { day: "Lunes", hours: "Cerrado" },
+    { day: "Martes", hours: "9:00 – 17:00" },
+    { day: "Miércoles", hours: "9:00 – 17:00" },
+    { day: "Jueves", hours: "9:00 – 17:00" },
+    { day: "Viernes", hours: "9:00 – 17:00" },
+    { day: "Sábado", hours: "10:00 – 17:00" },
+    { day: "Domingo", hours: "10:00 – 17:00" },
   ] as DayHours[],
 
-  // openingHoursSpecification en formato schema.org (día abreviado ISO)
+  // openingHoursSpecification en formato schema.org (día abreviado ISO).
+  // Lunes cerrado: se omite, no lleva entrada de horario.
   openingHoursSchema: [
-    { days: ["Monday", "Tuesday", "Wednesday"], opens: "17:00", closes: "23:30" },
     {
-      days: ["Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "11:30",
-      closes: "23:30",
+      days: ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
     },
+    { days: ["Saturday", "Sunday"], opens: "10:00", closes: "17:00" },
   ],
 
   gallery: [
     {
-      src: "/gallery/la-finestra-pizzas.jpg",
-      alt: "Selección de pizzas artesanales de La Finestra sobre tabla de madera",
+      src: "/gallery/copper-coffee-brunch-fachada.jpg",
+      alt: "Fachada de COPPER Specialty Coffee & Brunch en el Eixample de Valencia",
     },
     {
-      src: "/gallery/la-finestra-burrata.jpg",
-      alt: "Pizzeta de burrata fresca con rúcula y tomate de La Finestra",
+      src: "/gallery/copper-coffee-brunch-cafes.jpg",
+      alt: "Cafés de especialidad con latte art servidos en COPPER Specialty Coffee & Brunch",
     },
     {
-      src: "/gallery/la-finestra-tabla.jpg",
-      alt: "Tabla de mini pizzas variadas de La Finestra con cerveza",
+      src: "/gallery/copper-coffee-brunch-huevos-horneados.jpg",
+      alt: "Huevos horneados con espinacas y pesto, plato de brunch de COPPER Specialty Coffee & Brunch",
     },
     {
-      src: "/gallery/la-finestra-fachada.jpg",
-      alt: "Fachada y terraza exterior de La Finestra en el Eixample de Valencia",
+      src: "/gallery/copper-coffee-brunch-galleta-cafe.jpg",
+      alt: "Galleta artesanal y café para llevar de COPPER Specialty Coffee & Brunch",
     },
   ] as Photo[],
 
@@ -124,36 +122,27 @@ export const content = {
   mapEmbedSrc:
     "https://www.google.com/maps?q=" +
     encodeURIComponent(
-      "La Finestra, Carrer dels Vivons, 16, 46006 València",
+      "COPPER Specialty Coffee & Brunch, Carrer de Borriana, 12, 46005 València",
     ) +
     "&hl=es&z=16&output=embed",
-  mapLinkUrl: "https://maps.app.goo.gl/2f988ZfjDrcB8UUd7",
+  mapLinkUrl:
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(
+      "COPPER Specialty Coffee & Brunch, Carrer de Borriana, 12, 46005 València",
+    ),
 };
 
-/** Link de WhatsApp click-to-chat con mensaje predefinido. */
-export function whatsappLink(message: string): string {
-  return `https://wa.me/${content.whatsappNumber}?text=${encodeURIComponent(message)}`;
-}
+// El negocio no dispone de WhatsApp: el contacto y las consultas de mesa se
+// resuelven siempre a través del perfil de Instagram (Instagram no admite
+// mensajes con texto predefinido en la URL, a diferencia de WhatsApp).
 
-export const WHATSAPP_CONTACT_MESSAGE =
-  "¡Hola! Vengo de la página web de La Finestra y tengo una consulta.";
-export const WHATSAPP_RESERVE_MESSAGE =
-  "¡Hola! Vengo de la página web de La Finestra y me gustaría hacer una reserva.";
-
-// Link externo del sistema de reservas (se abre en pestaña nueva). Mientras
-// no se defina, "Reservar mesa" cae de vuelta a WhatsApp automáticamente.
-export const reservationLink = "";
-
-/** Href del botón "Contáctanos": siempre WhatsApp. */
+/** Href del botón "Contáctanos": perfil de Instagram del negocio. */
 export function contactHref(): string {
-  return whatsappLink(WHATSAPP_CONTACT_MESSAGE);
+  return content.social.instagram;
 }
 
-/** Href del botón "Reservar mesa": link externo si ya está definido, si no WhatsApp. */
+/** Href del botón "Escríbenos": el negocio no acepta reservas, así que
+ * también dirige a Instagram para consultar disponibilidad. */
 export function reservationHref(): string {
-  return reservationLink || whatsappLink(WHATSAPP_RESERVE_MESSAGE);
+  return content.social.instagram;
 }
-
-// El envío de los formularios (contacto/reservas) va vía un Worker de
-// Cloudflare + Brevo — ver cloudflare-worker/worker.js y src/hooks/useContactApi.ts.
-// La URL del Worker se inyecta en build desde el Secret VITE_FORMS_ENDPOINT.

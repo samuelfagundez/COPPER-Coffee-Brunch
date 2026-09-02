@@ -4,11 +4,11 @@
   --font-display: "Playfair Display", "Georgia", serif;
   --font-body: "Inter", "system-ui", sans-serif;
 
-  --color-ink: #1b140f;
-  --color-paper: #fbf7f1;
-  --color-brand: #7a2e2e;
-  --color-brand-dark: #5c2020;
-  --color-gold: #b8863b;
+  --color-ink: #241c14;
+  --color-paper: #faf6ee;
+  --color-brand: #5f6343;
+  --color-brand-dark: #241f16;
+  --color-gold: #9c5b2a;
 }
 
 html {

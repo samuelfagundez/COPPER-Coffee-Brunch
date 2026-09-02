@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { content, whatsappLink } from "../content";
+import { content } from "../content";
 
 interface SeoProps {
   title?: string;
@@ -29,7 +29,7 @@ export default function Seo({ title, description, path = "" }: SeoProps) {
   };
 
   const restaurantEntity: Record<string, unknown> = {
-    "@type": "Restaurant",
+    "@type": "CafeOrCoffeeShop",
     "@id": `${base}/#restaurant`,
     isPartOf: { "@id": `${base}/#website` },
     name: content.name,
@@ -54,16 +54,10 @@ export default function Seo({ title, description, path = "" }: SeoProps) {
       opens: s.opens,
       closes: s.closes,
     })),
-    // WhatsApp es un canal de chat, no una página de perfil — se excluye
-    // de sameAs (que es para identidades) y en cambio se usa como acción
-    // de reserva en acceptsReservations.
-    sameAs: Object.entries(content.social)
-      .filter(([key, value]) => key !== "whatsapp" && value)
-      .map(([, value]) => value),
+    sameAs: Object.values(content.social).filter(Boolean),
     hasMap: content.mapLinkUrl,
-    acceptsReservations: whatsappLink(
-      "¡Hola! Vengo de la página web de La Finestra y me gustaría hacer una reserva.",
-    ),
+    // El negocio no acepta reservas (ficha de Google Maps) — se omite
+    // acceptsReservations en vez de anunciar una reserva que no existe.
     keywords: content.keywords.join(", "),
   };
 

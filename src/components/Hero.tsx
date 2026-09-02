@@ -25,7 +25,7 @@ export default function Hero() {
             rel="noreferrer noopener"
             className="btn-primary"
           >
-            Reservar mesa
+            Escríbenos
           </a>
           <a
             href={contactHref()}
