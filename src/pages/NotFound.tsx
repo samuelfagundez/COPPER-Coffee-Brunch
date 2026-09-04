@@ -9,7 +9,7 @@ export default function NotFound() {
         <p className="mt-4 text-[var(--color-ink)]/70">
           La página que buscas no existe.
         </p>
-        <a href="/" className="btn-primary mt-6">
+        <a href={import.meta.env.BASE_URL} className="btn-primary mt-6">
           Volver al inicio
         </a>
       </div>
