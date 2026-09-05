@@ -1,59 +1,56 @@
 import { useEffect, useState } from "react";
-import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 
-// vite-react-ssg reparte los datos de cada ruta en un JSON cuyo nombre
-// lleva un hash que cambia en cada build (static-loader-data-manifest-*).
-// Si el navegador tiene en caché un index.html de un despliegue anterior,
-// ese hash ya no existe en el sitio (el último build lo sobrescribió),
-// GitHub Pages responde con su página HTML de "no encontrado" en vez del
-// JSON esperado, y el .json() falla con "Unexpected token '<'". Sin este
-// límite de error, React Router muestra su pantalla por defecto en inglés
-// ("Unexpected Application Error!"). Aquí se detecta ese caso concreto y
-// se recarga una sola vez (trae el index.html vigente, con el hash
-// correcto) antes de mostrar cualquier mensaje al usuario.
-const RELOAD_FLAG = "copper-route-error-reload";
+// Clave de sessionStorage para evitar un bucle infinito de recargas si el
+// problema persistiera por otro motivo real (no solo caché desactualizada).
+// Exportada para que App.tsx la limpie tras un montaje sin errores.
+export const RELOAD_ONCE_KEY = "ssg-error-reload-once";
 
+/**
+ * Recuperación automática para un fallo típico de vite-react-ssg: tras un
+ * despliegue nuevo, una pestaña con el HTML/JS de un despliegue anterior en
+ * caché intenta pedir un archivo (el manifest de datos estáticos) que ya no
+ * existe — GitHub Pages devuelve el index.html de repuesto en vez de un 404
+ * real, y el intento de leerlo como JSON lanza un error que React Router
+ * captura y muestra con su pantalla genérica ("Unexpected Application
+ * Error!"). Una recarga completa trae el HTML/JS actuales y lo resuelve.
+ */
 export default function RouteErrorBoundary() {
-  const error = useRouteError();
-  const [reloaded] = useState(() => {
-    try {
-      return sessionStorage.getItem(RELOAD_FLAG) === "1";
-    } catch {
-      return true; // sin sessionStorage, no arriesgamos un bucle: no recargar
-    }
-  });
+  useRouteError();
+  const [alreadyRetried] = useState(
+    () => sessionStorage.getItem(RELOAD_ONCE_KEY) === "1",
+  );
 
   useEffect(() => {
-    if (reloaded) return;
-    try {
-      sessionStorage.setItem(RELOAD_FLAG, "1");
-    } catch {
-      // si no se puede guardar la marca, mejor no recargar (evita bucle)
-      return;
+    if (!alreadyRetried) {
+      sessionStorage.setItem(RELOAD_ONCE_KEY, "1");
+      window.location.reload();
     }
-    window.location.reload();
-  }, [reloaded]);
+  }, [alreadyRetried]);
 
-  if (!reloaded) return null;
+  if (!alreadyRetried) {
+    // Recarga en curso: no hace falta mostrar nada, es prácticamente
+    // instantáneo. Un fondo neutro evita un parpadeo en blanco feo.
+    return <div className="min-h-screen bg-[var(--color-paper)]" />;
+  }
 
-  const message = isRouteErrorResponse(error)
-    ? `${error.status} ${error.statusText}`
-    : error instanceof Error
-      ? error.message
-      : "Error desconocido";
-
+  // La recarga no resolvió el problema (motivo distinto, p. ej. sin
+  // conexión) — mostramos algo útil en vez de insistir en bucle.
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center">
-      <p className="text-lg font-medium text-[var(--color-ink)]">
-        No hemos podido cargar la página correctamente.
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[var(--color-paper)] px-4 text-center">
+      <p className="font-display text-2xl font-bold text-[var(--color-brand-dark)]">
+        Vaya, algo no ha cargado bien
       </p>
-      <p className="max-w-sm text-sm text-[var(--color-ink)]/60">{message}</p>
+      <p className="max-w-sm text-[var(--color-ink)]/80">
+        Puede que sea un problema pasajero de conexión. Prueba a recargar la
+        página.
+      </p>
       <button
         type="button"
         onClick={() => window.location.reload()}
         className="btn-primary"
       >
-        Recargar la página
+        Recargar página
       </button>
     </div>
   );
